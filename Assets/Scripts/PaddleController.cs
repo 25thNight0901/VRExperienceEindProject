@@ -1,29 +1,36 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerPaddleController : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed = 15f;
 
-    [Header("Table Bounds")]
+    [Header("Bounds")]
     public float minX = -4.5f;
     public float maxX = 4.5f;
     public float minZ = -9f;
-    public float maxZ = 0f; // player side only
+    public float maxZ = 0f;
 
-    void Update()
+    private Rigidbody rb;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    void FixedUpdate()
     {
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(moveX, 0, moveZ);
 
-        transform.position += movement * speed * Time.deltaTime;
+        Vector3 newPosition =
+            rb.position + movement * speed * Time.fixedDeltaTime;
 
-        // Clamp position
-        Vector3 pos = transform.position;
-        pos.x = Mathf.Clamp(pos.x, minX, maxX);
-        pos.z = Mathf.Clamp(pos.z, minZ, maxZ);
+        newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
+        newPosition.z = Mathf.Clamp(newPosition.z, minZ, maxZ);
 
-        transform.position = pos;
+        rb.MovePosition(newPosition);
     }
 }
