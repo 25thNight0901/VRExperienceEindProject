@@ -33,9 +33,12 @@ public class GameManager : MonoBehaviour
 
     void ResetRigidbody(Rigidbody rb, Transform spawn)
     {
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-        rb.Sleep();
+        if (!rb.isKinematic)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.Sleep();
+        }
 
         rb.position = spawn.position;
         rb.rotation = spawn.rotation;
@@ -49,7 +52,7 @@ public class GameManager : MonoBehaviour
         ResetRigidbody(aiPaddle, aiPaddleSpawn);
     }
 
-    void ResetAfterGoal()
+    public void ResetAfterGoal()
     {
         ResetRigidbody(playerPaddle, playerPaddleSpawn);
         ResetRigidbody(aiPaddle, aiPaddleSpawn);
