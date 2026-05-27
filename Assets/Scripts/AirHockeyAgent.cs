@@ -106,8 +106,15 @@ public class AirHockeyAgent : Agent
         if (collision.gameObject.CompareTag("Puck"))
         {
             gameManager.NotifyPuckHit();
-            AddReward(1f);
-            EndEpisode();
+            Vector3 toGoal = (opponentGoal.position - puckTransform.position).normalized;
+            Vector3 puckDir = puckRigidbody.linearVelocity.normalized;
+            float alignment = Vector3.Dot(puckDir, toGoal);
+            if (alignment > 0f)
+                AddReward(0.3f + 0.1f * alignment);
+            else
+            {
+                AddReward(0.05f);
+            }
         }
     }
 }

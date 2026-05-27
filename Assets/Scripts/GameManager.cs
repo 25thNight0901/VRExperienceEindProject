@@ -12,8 +12,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Spawn Points")]
     public Transform startSpawn;
-    public Transform playerSpawn;
-    public Transform aiSpawn;
 
     [Header("Paddle Spawn Points")]
     public Transform playerPaddleSpawn;
@@ -53,6 +51,14 @@ public class GameManager : MonoBehaviour
 
         episodeTimer += Time.deltaTime;
 
+        if (puck.position.z > aiAgent.maxZ/2)
+        {
+            aiAgent.AddReward(-0.2f);
+            ResetTimers();
+            aiAgent.EndEpisode();
+            return;
+        }
+
         if (puckHasBeenHit && puckRb.linearVelocity.magnitude < puckIdleThreshold)
         {
             puckIdleTimer += Time.deltaTime;
@@ -64,8 +70,8 @@ public class GameManager : MonoBehaviour
         if (episodeTimer>= maxEpisodeDuration || puckIdleTimer >= puckIdleTimeout)
         {
             aiAgent.AddReward(-0.1f);// penalty for stalling
-            episodeTimer = 0f;
-            puckIdleTimer = 0f;
+            ResetTimers();
+            aiAgent.EndEpisode();
         }
     }
 
@@ -85,7 +91,7 @@ public class GameManager : MonoBehaviour
     void ResetPuckRandom()
     {
         float randomX = Random.Range(aiAgent.minX, aiAgent.maxX);
-        float randomZ = Random.Range(aiAgent.minZ, aiAgent.maxZ);
+        float randomZ = Random.Range(aiAgent.minZ, aiAgent.maxZ/2);
 
         Vector3 randomPos = new Vector3(randomX, puck.position.y, randomZ);
 
@@ -111,14 +117,14 @@ public class GameManager : MonoBehaviour
     void SpawnAtStart()
     {
         ResetPuckRandom();
-        ResetRigidbody(playerPaddle, playerPaddleSpawn);
+        //ResetRigidbody(playerPaddle, playerPaddleSpawn);
         ResetRigidbody(aiPaddle, aiPaddleSpawn);
     }
 
     public void ResetAfterGoal()
     {
         ResetTimers();
-        ResetRigidbody(playerPaddle, playerPaddleSpawn);
+        //ResetRigidbody(playerPaddle, playerPaddleSpawn);
         ResetRigidbody(aiPaddle, aiPaddleSpawn);
         ResetPuckRandom();
     }

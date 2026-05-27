@@ -2,31 +2,58 @@
     "AirHockeyAgent": {
         "checkpoints": [
             {
-                "steps": 69070,
-                "file_path": "results\\AirHockeyAgentV1\\AirHockeyAgent\\AirHockeyAgent-69070.onnx",
-                "reward": 0.1192597208544612,
-                "creation_time": 1779896880.376576,
+                "steps": 106883,
+                "file_path": "results\\AirHockeyAgentV1\\AirHockeyAgent\\AirHockeyAgent-106883.onnx",
+                "reward": 0.37348973751068115,
+                "creation_time": 1779897944.4151666,
                 "auxillary_file_paths": [
-                    "results\\AirHockeyAgentV1\\AirHockeyAgent\\AirHockeyAgent-69070.pt"
+                    "results\\AirHockeyAgentV1\\AirHockeyAgent\\AirHockeyAgent-106883.pt"
                 ]
             },
             {
-                "steps": 104541,
-                "file_path": "results\\AirHockeyAgentV1\\AirHockeyAgent\\AirHockeyAgent-104541.onnx",
-                "reward": 0.9746387469879245,
-                "creation_time": 1779897341.986043,
+                "steps": 111329,
+                "file_path": "results\\AirHockeyAgentV1\\AirHockeyAgent\\AirHockeyAgent-111329.onnx",
+                "reward": null,
+                "creation_time": 1779898234.6074698,
                 "auxillary_file_paths": [
-                    "results\\AirHockeyAgentV1\\AirHockeyAgent\\AirHockeyAgent-104541.pt"
+                    "results\\AirHockeyAgentV1\\AirHockeyAgent\\AirHockeyAgent-111329.pt"
+                ]
+            },
+            {
+                "steps": 111909,
+                "file_path": "results\\AirHockeyAgentV1\\AirHockeyAgent\\AirHockeyAgent-111909.onnx",
+                "reward": -0.2084999978542328,
+                "creation_time": 1779898375.9098005,
+                "auxillary_file_paths": [
+                    "results\\AirHockeyAgentV1\\AirHockeyAgent\\AirHockeyAgent-111909.pt"
+                ]
+            },
+            {
+                "steps": 499990,
+                "file_path": "results\\AirHockeyAgentV1\\AirHockeyAgent\\AirHockeyAgent-499990.onnx",
+                "reward": 2.0997603237628937,
+                "creation_time": 1779901500.3817892,
+                "auxillary_file_paths": [
+                    "results\\AirHockeyAgentV1\\AirHockeyAgent\\AirHockeyAgent-499990.pt"
+                ]
+            },
+            {
+                "steps": 500054,
+                "file_path": "results\\AirHockeyAgentV1\\AirHockeyAgent\\AirHockeyAgent-500054.onnx",
+                "reward": 2.0997603237628937,
+                "creation_time": 1779901500.4227877,
+                "auxillary_file_paths": [
+                    "results\\AirHockeyAgentV1\\AirHockeyAgent\\AirHockeyAgent-500054.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 104541,
+            "steps": 500054,
             "file_path": "results\\AirHockeyAgentV1\\AirHockeyAgent.onnx",
-            "reward": 0.9746387469879245,
-            "creation_time": 1779897341.986043,
+            "reward": 2.0997603237628937,
+            "creation_time": 1779901500.4227877,
             "auxillary_file_paths": [
-                "results\\AirHockeyAgentV1\\AirHockeyAgent\\AirHockeyAgent-104541.pt"
+                "results\\AirHockeyAgentV1\\AirHockeyAgent\\AirHockeyAgent-500054.pt"
             ]
         }
     },
