@@ -1,30 +1,38 @@
 {
-    "AirHockey": {
-        "elo": 1200.0,
+    "AirHockeyAgent": {
         "checkpoints": [
             {
-                "steps": 5888,
-                "file_path": "results\\AirHockeyAgentV1\\AirHockey\\AirHockey-5888.onnx",
-                "reward": null,
-                "creation_time": 1779264243.8220422,
+                "steps": 69070,
+                "file_path": "results\\AirHockeyAgentV1\\AirHockeyAgent\\AirHockeyAgent-69070.onnx",
+                "reward": 0.1192597208544612,
+                "creation_time": 1779896880.376576,
                 "auxillary_file_paths": [
-                    "results\\AirHockeyAgentV1\\AirHockey\\AirHockey-5888.pt"
+                    "results\\AirHockeyAgentV1\\AirHockeyAgent\\AirHockeyAgent-69070.pt"
+                ]
+            },
+            {
+                "steps": 104541,
+                "file_path": "results\\AirHockeyAgentV1\\AirHockeyAgent\\AirHockeyAgent-104541.onnx",
+                "reward": 0.9746387469879245,
+                "creation_time": 1779897341.986043,
+                "auxillary_file_paths": [
+                    "results\\AirHockeyAgentV1\\AirHockeyAgent\\AirHockeyAgent-104541.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 5888,
-            "file_path": "results\\AirHockeyAgentV1\\AirHockey.onnx",
-            "reward": null,
-            "creation_time": 1779264243.8220422,
+            "steps": 104541,
+            "file_path": "results\\AirHockeyAgentV1\\AirHockeyAgent.onnx",
+            "reward": 0.9746387469879245,
+            "creation_time": 1779897341.986043,
             "auxillary_file_paths": [
-                "results\\AirHockeyAgentV1\\AirHockey\\AirHockey-5888.pt"
+                "results\\AirHockeyAgentV1\\AirHockeyAgent\\AirHockeyAgent-104541.pt"
             ]
         }
     },
     "metadata": {
         "stats_format_version": "0.3.0",
         "mlagents_version": "0.30.0",
-        "torch_version": "1.7.1+cpu"
+        "torch_version": "1.7.1+cu110"
     }
 }
