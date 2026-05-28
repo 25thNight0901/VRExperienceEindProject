@@ -304,7 +304,7 @@ MonoBehaviour:
   opponentGoal: {fileID: 58743841}
   ownGoal: {fileID: 1448470289}
   puckRigidbody: {fileID: 419434989}
-  speed: 8
+  speed: 20
   minX: -4.25
   maxX: 4.25
   minZ: 0
@@ -765,7 +765,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3.04, y: -0.2, z: 0}
-  m_LocalScale: {x: 1.05, y: 0.14999999, z: 1.05}
+  m_LocalScale: {x: 0.85, y: 0.1, z: 0.85}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 666753473}
@@ -801,9 +801,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 419434983}
   serializedVersion: 5
-  m_Mass: 0.3
+  m_Mass: 0.1
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_AngularDamping: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -832,7 +832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e48c0e924300614f8ee293a3e095b57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuckController
-  maxSpeed: 15
+  maxSpeed: 40
   slowdown: 0.995
 --- !u!1 &457114538
 GameObject:
@@ -1426,7 +1426,7 @@ GameObject:
   - component: {fileID: 1047336902}
   - component: {fileID: 1047336901}
   - component: {fileID: 1047336900}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1856,83 +1856,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31b047a99a1ca654fb644938197ed4c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPaddleController
-  speed: 15
-  minX: -4.25
-  maxX: 4.25
+  movespeed: 20
+  minX: -4.5
+  maxX: 4.5
   minZ: -9
   maxZ: 0
---- !u!114 &1860287854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1860287849}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdc51138f674a994caf5cbad7a0584d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AirHockeyAgent
-  agentParameters:
-    maxStep: 0
-  hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
-  gameManager: {fileID: 1697958267}
-  puckTransform: {fileID: 419434987}
-  opponentGoal: {fileID: 1448470289}
-  ownGoal: {fileID: 58743841}
-  puckRigidbody: {fileID: 419434989}
-  speed: 15
-  minX: -4.25
-  maxX: 4.25
-  minZ: -9
-  maxZ: 0
---- !u!114 &1860287855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1860287849}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.ML-Agents::Unity.MLAgents.Policies.BehaviorParameters
-  m_BrainParameters:
-    VectorObservationSize: 11
-    NumStackedVectorObservations: 1
-    m_ActionSpec:
-      m_NumContinuousActions: 2
-      BranchSizes: 
-    VectorActionSize: 02000000
-    VectorActionDescriptions: []
-    VectorActionSpaceType: 1
-    hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
-  m_InferenceDevice: 0
-  m_BehaviorType: 0
-  m_BehaviorName: AirHockey
-  TeamId: 1
-  m_UseChildSensors: 1
-  m_UseChildActuators: 1
-  m_DeterministicInference: 0
-  m_ObservableAttributeHandling: 0
---- !u!114 &1860287856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1860287849}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.ML-Agents::Unity.MLAgents.DecisionRequester
-  DecisionPeriod: 5
-  DecisionStep: 0
-  TakeActionsBetweenDecisions: 1
+  tablelayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1001 &1966394105
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2027,15 +1958,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1650815709396291848, guid: eed32e297ee8c0a468c6877e040bd08f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1860287853}
-    - targetCorrespondingSourceObject: {fileID: 1650815709396291848, guid: eed32e297ee8c0a468c6877e040bd08f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1860287855}
-    - targetCorrespondingSourceObject: {fileID: 1650815709396291848, guid: eed32e297ee8c0a468c6877e040bd08f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1860287854}
-    - targetCorrespondingSourceObject: {fileID: 1650815709396291848, guid: eed32e297ee8c0a468c6877e040bd08f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1860287856}
   m_SourcePrefab: {fileID: 100100000, guid: eed32e297ee8c0a468c6877e040bd08f, type: 3}
 --- !u!1 &2106024701
 GameObject:
