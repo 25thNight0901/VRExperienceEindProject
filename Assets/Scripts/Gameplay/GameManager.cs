@@ -10,8 +10,10 @@ public class GameManager : MonoBehaviour
     public Rigidbody playerPaddle;
     public Rigidbody aiPaddle;
 
-    [Header("Spawn Points")]
+    [Header("Puck Spawn Points")]
     public Transform startSpawn;
+    public Transform playerSpawn;
+    public Transform aiSpawn;
 
     [Header("Paddle Spawn Points")]
     public Transform playerPaddleSpawn;
@@ -20,6 +22,9 @@ public class GameManager : MonoBehaviour
     [Header("Score")]
     public int playerScore = 0;
     public int aiScore = 0;
+
+    [Header("Game")]
+    public int winningScore = 7;
 
     [Header("AIAgents")]
     public AirHockeyAgent aiAgent;
@@ -88,19 +93,6 @@ public class GameManager : MonoBehaviour
         rb.rotation = spawn.rotation;
     }
 
-    void ResetPuckRandom()
-    {
-        float randomX = Random.Range(aiAgent.minX, aiAgent.maxX);
-        float randomZ = Random.Range(aiAgent.minZ, aiAgent.maxZ/2);
-
-        Vector3 randomPos = new Vector3(randomX, puck.position.y, randomZ);
-
-        puckRb.linearVelocity = Vector3.zero;
-        puckRb.angularVelocity = Vector3.zero;
-        puckRb.Sleep();
-        puckRb.position = randomPos;
-    }
-
     void ResetTimers()
     {
         episodeTimer = 0f;
@@ -116,17 +108,17 @@ public class GameManager : MonoBehaviour
 
     void SpawnAtStart()
     {
-        ResetPuckRandom();
-        //ResetRigidbody(playerPaddle, playerPaddleSpawn);
+        ResetRigidbody(puckRb, startSpawn);
+        ResetRigidbody(playerPaddle, playerPaddleSpawn);
         ResetRigidbody(aiPaddle, aiPaddleSpawn);
     }
 
     public void ResetAfterGoal()
     {
         ResetTimers();
-        //ResetRigidbody(playerPaddle, playerPaddleSpawn);
+        ResetRigidbody(playerPaddle, playerPaddleSpawn);
         ResetRigidbody(aiPaddle, aiPaddleSpawn);
-        ResetPuckRandom();
+        ResetRigidbody(puckRb, startSpawn);
     }
 
     public void ScoreGoal(string goalName)
@@ -140,6 +132,10 @@ public class GameManager : MonoBehaviour
             aiAgent.AddReward(1.0f);
 
             aiAgent.EndEpisode();
+
+            ResetAfterGoal();
+
+            puck.position = playerSpawn.position;
         }
         else if (goalName == "AIGoal")
         {
@@ -149,6 +145,29 @@ public class GameManager : MonoBehaviour
             aiAgent.AddReward(-1.0f);
 
             aiAgent.EndEpisode();
+
+            ResetAfterGoal();
+
+            puck.position = aiSpawn.position;
+        }
+        if (playerScore >= winningScore)
+        {
+            Debug.Log("PLAYER WINS!");
+            EndMatch();
+            return;
+        }
+
+        if (aiScore >= winningScore)
+        {
+            Debug.Log("AI WINS!");
+            EndMatch();
+            return;
+        }
+        void EndMatch()
+        {
+            Debug.Log("Match Over");
+
+            puckRb.linearVelocity = Vector3.zero;
         }
     }
 }
