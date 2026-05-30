@@ -1,5 +1,7 @@
-using UnityEngine;
+using TMPro;
 using Unity.MLAgents;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,6 +27,11 @@ public class GameManager : MonoBehaviour
 
     [Header("Game")]
     public int winningScore = 7;
+
+    [Header("UI")]
+    public CanvasGroup gameOverPanel;
+    public TextMeshProUGUI resultText;
+    public TextMeshProUGUI scoreText;
 
     [Header("AIAgents")]
     public AirHockeyAgent aiAgent;
@@ -153,21 +160,41 @@ public class GameManager : MonoBehaviour
         if (playerScore >= winningScore)
         {
             Debug.Log("PLAYER WINS!");
-            EndMatch();
+            EndMatch("You won from the AI!");
             return;
         }
 
         if (aiScore >= winningScore)
         {
             Debug.Log("AI WINS!");
-            EndMatch();
+            EndMatch("You lost against the AI!");
             return;
         }
-        void EndMatch()
-        {
-            Debug.Log("Match Over");
+    }
+    void EndMatch(string result)
+    {
+        Debug.Log("Match Over");
 
-            puckRb.linearVelocity = Vector3.zero;
-        }
+        puckRb.linearVelocity = Vector3.zero;
+
+        gameOverPanel.alpha = 1.0f;
+        gameOverPanel.interactable = true;
+        gameOverPanel.blocksRaycasts = true;
+
+        resultText.text = result;
+        scoreText.text = "Score: " + playerScore + " - " + aiScore;
+
+        Time.timeScale = 0f;
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void goToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
