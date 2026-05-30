@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/VRTestingScene.unity.meta
 guid: 9aa33dd9a1fd76347b0e3b6c1dd03ab2
+========
+guid: 15b969a88c629ff40bde2eda849c0a8d
+>>>>>>>> 014be8d91f2247229072d65b24563100671fe9f2:Assets/_Recovery/0.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

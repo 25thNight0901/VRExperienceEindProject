@@ -10,6 +10,8 @@ public class AirHockeyAgent : Agent
     [Header("Referenties")]
     public GameManager gameManager;
     public Transform puckTransform;
+    public Transform opponentGoal;
+    public Transform ownGoal;
     public Rigidbody puckRigidbody;
 
     [Header("Instellingen")]
@@ -21,10 +23,9 @@ public class AirHockeyAgent : Agent
     public float minZ = 0f;
     public float maxZ = 9f;
 
-    private Vector3 movementDirection;
-
     private Rigidbody rb;
     private Vector3 targetPosition;
+    private float prevDistToPuck;
 
     public override void Initialize()
     {
@@ -38,17 +39,25 @@ public class AirHockeyAgent : Agent
         {
             gameManager.ResetAfterGoal();
         }
-        targetPosition = rb.position;
+        prevDistToPuck = Vector3.Distance(transform.position, puckTransform.position);
+         targetPosition = rb.position;
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
+        // Your own state
         sensor.AddObservation(transform.position);
-        sensor.AddObservation(puckTransform.position);
-        sensor.AddObservation(puckRigidbody.linearVelocity);
+        sensor.AddObservation(rb.linearVelocity);
 
         Vector3 toPuck = puckTransform.position - transform.position;
-        sensor.AddObservation(new Vector2(toPuck.x, toPuck.z));
+
+        sensor.AddObservation(toPuck.normalized); // sensor for puck direction
+        sensor.AddObservation(toPuck.magnitude); // sensor for distance to puck
+        sensor.AddObservation(puckRigidbody.linearVelocity); //sensor for puck velocity
+
+        //sensor for attack direction
+        Vector3 toOpponentGoal = opponentGoal.position - puckTransform.position;
+        sensor.AddObservation(toOpponentGoal.normalized);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -56,22 +65,24 @@ public class AirHockeyAgent : Agent
         float moveX = actions.ContinuousActions[0];
         float moveZ = actions.ContinuousActions[1];
 
-        movementDirection = new Vector3(moveX, 0f, moveZ);
+        Vector3 movementDirection = new Vector3(moveX, 0f, moveZ);
 
-        AddReward(-0.001f);
-    }
+        Vector3 nextPos = rb.position + movementDirection * speed * Time.fixedDeltaTime;
 
-    void FixedUpdate()
-    {
-        if (rb.isKinematic)
+        nextPos.x = Mathf.Clamp(nextPos.x, minX, maxX);
+        nextPos.z = Mathf.Clamp(nextPos.z, minZ, maxZ);
+
+        rb.MovePosition(nextPos);
+
+        if (puckRigidbody.linearVelocity.magnitude> 0.5f)
         {
-            Vector3 nextPos = rb.position + movementDirection * speed * Time.fixedDeltaTime;
-
-            nextPos.x = Mathf.Clamp(nextPos.x, minX, maxX);
-            nextPos.z = Mathf.Clamp(nextPos.z, minZ, maxZ);
-
-            rb.MovePosition(nextPos);
+            float distToPuck = Vector3.Distance(transform.position, puckTransform.position);
+            float delta = prevDistToPuck - distToPuck;
+            AddReward(delta * 0.01f);
         }
+        
+        prevDistToPuck = Vector3.Distance(transform.position, puckTransform.position);
+        AddReward(-0.0005f); // penalty for time wasting
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -94,7 +105,16 @@ public class AirHockeyAgent : Agent
     {
         if (collision.gameObject.CompareTag("Puck"))
         {
-            AddReward(0.1f);
+            gameManager.NotifyPuckHit();
+            Vector3 toGoal = (opponentGoal.position - puckTransform.position).normalized;
+            Vector3 puckDir = puckRigidbody.linearVelocity.normalized;
+            float alignment = Vector3.Dot(puckDir, toGoal);
+            if (alignment > 0f)
+                AddReward(0.3f + 0.1f * alignment);
+            else
+            {
+                AddReward(0.05f);
+            }
         }
     }
 }

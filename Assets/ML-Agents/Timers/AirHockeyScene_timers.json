@@ -1,1 +1,76 @@
-{"count":1,"self":117.23731199999999,"total":117.2978251,"children":{"InitializeActuators":{"count":2,"self":0.0014482,"total":0.0014482,"children":null},"InitializeSensors":{"count":2,"self":0.0020215,"total":0.0020215,"children":null},"AgentSendState":{"count":5453,"self":0.012796,"total":0.0219562,"children":{"CollectObservations":{"count":2182,"self":0.003604,"total":0.003604,"children":null},"WriteActionMask":{"count":2182,"self":0.0030236,"total":0.0030236,"children":null},"RequestDecision":{"count":2182,"self":0.0025326,"total":0.0025326,"children":null}}},"DecideAction":{"count":5453,"self":0.0264549,"total":0.0264549,"children":null},"AgentAct":{"count":5453,"self":0.0080935,"total":0.0080935,"children":null}},"gauges":{},"metadata":{"timer_format_version":"0.1.0","start_time_seconds":"1779907084","unity_version":"6000.4.0f1","command_line_arguments":"C:\\Program Files\\Unity\\Hub\\Editor\\6000.4.0f1\\Editor\\Unity.exe -projectpath C:\\Users\\jonat\\Ap Jaar 3\\VR Experience\\VRExperienceEindProject -acceptSoftwareTermsForThisRunOnly -useHub -hubIPC -cloudEnvironment production","communication_protocol_version":"1.5.0","com.unity.ml-agents_version":"4.0.3","scene_name":"AirHockeyScene","end_time_seconds":"1779907201"}}
+{
+  "count": 1,
+  "self": 154.8691072,
+  "total": 155.5047246,
+  "children": {
+    "InitializeActuators": {
+      "count": 1,
+      "self": 0.0017047,
+      "total": 0.0017047,
+      "children": null
+    },
+    "InitializeSensors": {
+      "count": 1,
+      "self": 0.00099319999999999986,
+      "total": 0.00099319999999999986,
+      "children": null
+    },
+    "AgentSendState": {
+      "count": 7385,
+      "self": 0.0217376,
+      "total": 0.0540212,
+      "children": {
+        "CollectObservations": {
+          "count": 1477,
+          "self": 0.0105981,
+          "total": 0.0105981,
+          "children": null
+        },
+        "WriteActionMask": {
+          "count": 1477,
+          "self": 0.0015822,
+          "total": 0.0015822,
+          "children": null
+        },
+        "RequestDecision": {
+          "count": 1477,
+          "self": 0.020103299999999998,
+          "total": 0.020103299999999998,
+          "children": null
+        }
+      }
+    },
+    "DecideAction": {
+      "count": 7385,
+      "self": 0.4916968,
+      "total": 0.4916968,
+      "children": null
+    },
+    "AgentAct": {
+      "count": 7385,
+      "self": 0.0871975,
+      "total": 0.0871975,
+      "children": null
+    }
+  },
+  "gauges": {
+    "AirHockeyAgent.CumulativeReward": {
+      "count": 12,
+      "max": 5.32848835,
+      "min": -1.00260556,
+      "runningAverage": 1.71655273,
+      "value": 0.5954428,
+      "weightedAverage": 1.7328074
+    }
+  },
+  "metadata": {
+    "timer_format_version": "0.1.0",
+    "start_time_seconds": "1780096813",
+    "unity_version": "6000.4.0f1",
+    "command_line_arguments": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.4.0f1\\Editor\\Unity.exe -projectpath C:\\Users\\Tenzi\\VR_Experience\\EindProject\\VRExperienceEindProject -acceptSoftwareTermsForThisRunOnly -useHub -hubIPC -cloudEnvironment production",
+    "communication_protocol_version": "1.5.0",
+    "com.unity.ml-agents_version": "4.0.3",
+    "scene_name": "AirHockeyScene",
+    "end_time_seconds": "1780096968"
+  }
+}
