@@ -1,10 +1,7 @@
 {
   "dependencies": {
-<<<<<<< HEAD
     "com.meta.xr.sdk.all": "201.0.0",
-=======
     "com.unity.2d.sprite": "1.0.0",
->>>>>>> 014be8d91f2247229072d65b24563100671fe9f2
     "com.unity.ai.navigation": "2.0.11",
     "com.unity.collab-proxy": "2.11.4",
     "com.unity.ide.rider": "3.0.39",
