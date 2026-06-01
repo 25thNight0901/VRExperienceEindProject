@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class DisablePaddleInVR : MonoBehaviour
 {
-    private MonoBehaviour paddleController;
+    private PlayerPaddleController paddleController;
     private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grab;
 
     void Start()
     {
-        paddleController = GetComponent<PaddleController>();
+        paddleController = GetComponent<PlayerPaddleController>();
         grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
 
         grab.selectEntered.AddListener(_ => paddleController.enabled = false);
