@@ -1,76 +1,76 @@
 {
   "count": 1,
-  "self": 154.8691072,
-  "total": 155.5047246,
+  "self": 84.5177728,
+  "total": 84.6357725,
   "children": {
     "InitializeActuators": {
       "count": 1,
-      "self": 0.0017047,
-      "total": 0.0017047,
+      "self": 0.0015095999999999998,
+      "total": 0.0015095999999999998,
       "children": null
     },
     "InitializeSensors": {
       "count": 1,
-      "self": 0.00099319999999999986,
-      "total": 0.00099319999999999986,
+      "self": 0.0016271,
+      "total": 0.0016271,
       "children": null
     },
     "AgentSendState": {
-      "count": 7385,
-      "self": 0.0217376,
-      "total": 0.0540212,
+      "count": 727,
+      "self": 0.0068273,
+      "total": 0.0212065,
       "children": {
         "CollectObservations": {
-          "count": 1477,
-          "self": 0.0105981,
-          "total": 0.0105981,
+          "count": 146,
+          "self": 0.0025617,
+          "total": 0.0025617,
           "children": null
         },
         "WriteActionMask": {
-          "count": 1477,
-          "self": 0.0015822,
-          "total": 0.0015822,
+          "count": 146,
+          "self": 0.00051459999999999993,
+          "total": 0.00051459999999999993,
           "children": null
         },
         "RequestDecision": {
-          "count": 1477,
-          "self": 0.020103299999999998,
-          "total": 0.020103299999999998,
+          "count": 146,
+          "self": 0.0113029,
+          "total": 0.0113029,
           "children": null
         }
       }
     },
     "DecideAction": {
-      "count": 7385,
-      "self": 0.4916968,
-      "total": 0.4916968,
+      "count": 727,
+      "self": 0.0816213,
+      "total": 0.0816213,
       "children": null
     },
     "AgentAct": {
-      "count": 7385,
-      "self": 0.0871975,
-      "total": 0.0871975,
+      "count": 727,
+      "self": 0.012036999999999999,
+      "total": 0.012036999999999999,
       "children": null
     }
   },
   "gauges": {
     "AirHockeyAgent.CumulativeReward": {
-      "count": 12,
-      "max": 5.32848835,
-      "min": -1.00260556,
-      "runningAverage": 1.71655273,
-      "value": 0.5954428,
-      "weightedAverage": 1.7328074
+      "count": 3,
+      "max": 2.25371957,
+      "min": -0.3544224,
+      "runningAverage": 0.9183628,
+      "value": 2.25371957,
+      "weightedAverage": 0.524528146
     }
   },
   "metadata": {
     "timer_format_version": "0.1.0",
-    "start_time_seconds": "1780096813",
+    "start_time_seconds": "1780135628",
     "unity_version": "6000.4.0f1",
-    "command_line_arguments": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.4.0f1\\Editor\\Unity.exe -projectpath C:\\Users\\Tenzi\\VR_Experience\\EindProject\\VRExperienceEindProject -acceptSoftwareTermsForThisRunOnly -useHub -hubIPC -cloudEnvironment production",
+    "command_line_arguments": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.4.0f1\\Editor\\Unity.exe -projectpath C:\\Users\\lowie\\Documents\\1.1vr\\VRExperienceEindProject -acceptSoftwareTermsForThisRunOnly -useHub -hubIPC -cloudEnvironment production",
     "communication_protocol_version": "1.5.0",
     "com.unity.ml-agents_version": "4.0.3",
     "scene_name": "AirHockeyScene",
-    "end_time_seconds": "1780096968"
+    "end_time_seconds": "1780135712"
   }
 }
