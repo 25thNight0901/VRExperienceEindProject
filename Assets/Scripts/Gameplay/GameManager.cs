@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour
     {
         puckRb = puck.GetComponent<Rigidbody>();
 
+        ResolveMissingReferences();
+
         SpawnAtStart();
     }
 
@@ -89,6 +91,12 @@ public class GameManager : MonoBehaviour
 
     void ResetRigidbody(Rigidbody rb, Transform spawn)
     {
+        if (rb == null || spawn == null)
+        {
+            Debug.LogWarning($"GameManager: Missing reference when resetting rigidbody. rb={(rb != null ? rb.name : "null")}, spawn={(spawn != null ? spawn.name : "null")}");
+            return;
+        }
+
         if (!rb.isKinematic)
         {
             rb.linearVelocity = Vector3.zero;
@@ -196,5 +204,34 @@ public class GameManager : MonoBehaviour
     public void goToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    private void ResolveMissingReferences()
+    {
+        if (playerPaddle == null)
+        {
+            Rigidbody foundPlayerPaddle = FindPlayerPaddle();
+            if (foundPlayerPaddle != null)
+            {
+                playerPaddle = foundPlayerPaddle;
+                Debug.Log($"GameManager: Auto-assigned playerPaddle to '{playerPaddle.name}'");
+            }
+        }
+    }
+
+    private Rigidbody FindPlayerPaddle()
+    {
+        GameObject namedPaddle = GameObject.Find("Kaske (2)");
+        if (namedPaddle == null)
+            namedPaddle = GameObject.Find("Kaske");
+
+        if (namedPaddle != null)
+            return namedPaddle.GetComponent<Rigidbody>();
+
+        PlayerPaddleController paddleController = Object.FindFirstObjectByType<PlayerPaddleController>();
+        if (paddleController != null)
+            return paddleController.GetComponent<Rigidbody>();
+
+        return null;
     }
 }
