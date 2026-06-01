@@ -257,5 +257,5 @@ maar tegen een agent die zijn gedrag heeft aangeleerd door training.
 
 # Bronvermelding
 
-Peeters, T. (2025). mlagents_2223-deel1 [Cursuspresentatie]. Bachelor Toegepaste Informatica, AP Hogeschool
+Peeters, T. (2026). mlagents_2223-deel1 [Cursuspresentatie]. Bachelor Toegepaste Informatica, AP Hogeschool
 ---
