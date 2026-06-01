@@ -7,9 +7,9 @@ Een virtual reality retrostijl-airhockeyspel waarin de speler tegen een Ai-agent
 In klassieke airhockeygames zijn tegenstanders vooraf geprogrammeerd met vaste gedragen.
 In dit project werd een AI-agent getraind die zelfstandig leert spelen door middel van Reinforcement Learning.
 De speler speelt in een virtual reality-omgeving tegen een agent die tijdens zijn trainingsfase geleerd heeft om de puck te slaan, verdedigen en scoren.
-Hierdoor kan de speler tegen een dynamische tegenstander spelen warvan het gedrag gebaseerd is op ervaring en niet op vooraf geprogrammeerde regels.
+Hierdoor kan de speler tegen een dynamische tegenstander spelen waarvan het gedrag gebaseerd is op ervaring en niet op vooraf geprogrammeerde regels.
 
-In deze tutorial wordt er uitgelegd hoe een Ai-powered VR airhockeygame wordt opgebouwd met Unity, XR Interaction Toolkit em ML-Agents.
+In deze tutorial wordt er uitgelegd hoe een AI-powered VR airhockeygame wordt opgebouwd met Unity, XR Interaction Toolkit em ML-Agents.
 Hier zie je hoe de spelomgeving werd ingericht, hoe observaties, acties en beloningen worden gedefinieerd, hoe de agent wordt getraind en hoe de resultaten kunnen worden geanalyseerd met TensorBoard.
 
 ---
@@ -20,14 +20,14 @@ Hier zie je hoe de spelomgeving werd ingericht, hoe observaties, acties en belon
 
 ### Gebruikte software
 
-| Software | Versie |
-|-----------|---------|
-| Unity | 6000.x |
-| ML-Agents | Release 22 |
-| Python | 3.10 |
-| TensorBoard | 2.x |
-| XR Interaction Toolkit | 3.x |
-| Meta Quest SDK | Laatste versie |
+| Software               | Versie         |
+| ---------------------- | -------------- |
+| Unity                  | 6000.x         |
+| ML-Agents              | Release 22     |
+| Python                 | 3.10           |
+| TensorBoard            | 2.x            |
+| XR Interaction Toolkit | 3.x            |
+| Meta Quest SDK         | Laatste versie |
 
 ## Verloop van de simulatie
 
@@ -53,7 +53,7 @@ Tijdens de rally beweegt de puck volgens de physics-engine van Unity.
 Wanneer de puck een doel bereikt:
 
 1. De score wordt bijgewerkt.
-2. De puck wordt gereset en gespawnd in de veld van de verliezer van de vorige ronde.
+2. De puck wordt gereset en gespawnd in het midden van het speelveld van de verliezer van de vorige ronde.
 3. Een nieuwe ronde start.
 
 ---
@@ -62,14 +62,14 @@ Wanneer de puck een doel bereikt:
 
 De AI-agent ontvangt tijdens elke stap informatie over de omgeving.
 
-| Observatie |
-|------------|
-| Positie van de AI-paddle |
-| Snelheid van de AI-paddle |
-| Afstand tussen AI en puck |
-| Righting van de AI-paddle naar de puck |
-| Snelheid van de puck |
-| Positie van het spelersdoel|
+| Observatie                             |
+| -------------------------------------- |
+| Positie van de AI-paddle               |
+| Snelheid van de AI-paddle              |
+| Afstand tussen AI en puck              |
+| Richting van de AI-paddle naar de puck |
+| Snelheid van de puck                   |
+| Positie van het spelersdoel            |
 
 ---
 
@@ -77,8 +77,8 @@ De AI-agent ontvangt tijdens elke stap informatie over de omgeving.
 
 De agent beschikt over twee continue acties.
 
-| Actie |
-|--------|
+| Actie               |
+| ------------------- |
 | Beweging op de X-as |
 | Beweging op de Z-as |
 
@@ -86,29 +86,29 @@ De agent beschikt over twee continue acties.
 
 ## Beloningen
 
-| Situatie | Beloning |
-|-----------|-----------|
-| Doelpunt maken | Positieve beloning |
-| Doelpunt tegen krijgen | Negatieve beloning |
-| Puck raken | Kleine positieve beloning |
+| Situatie                                 | Beloning                  |
+| ---------------------------------------- | ------------------------- |
+| Doelpunt maken                           | Positieve beloning        |
+| Doelpunt tegen krijgen                   | Negatieve beloning        |
+| Puck raken                               | Kleine positieve beloning |
 | Puck raken maar beland in de speler veld | Kleine negatieve beloning |
-| Puck raken en richting het doel duwen | Positieve beloning |
-| Richting puck bewegen | Kleine positieve beloning |
-| Tijdverspilling | Kleine negatieve beloning |
+| Puck raken en richting het doel duwen    | Positieve beloning        |
+| Richting puck bewegen                    | Kleine positieve beloning |
+| Tijdverspilling                          | Kleine negatieve beloning |
 
 ---
 
 ## Beschrijving van de objecten
 
-| Object | Functie |
-|----------|----------|
-| Air Hockey Table | Speelveld |
-| Puck | Object waarmee gescoord wordt |
-| AI Paddle | Bestuurd door de AI-agent |
-| Player Paddle | Bestuurd door de speler |
-| Goal AI | Doel van de AI |
-| Goal Player | Doel van de speler |
-| GameManager | Verwerkt scores en resets |
+| Object           | Functie                       |
+| ---------------- | ----------------------------- |
+| Air Hockey Table | Speelveld                     |
+| Puck             | Object waarmee gescoord wordt |
+| AI Paddle        | Bestuurd door de AI-agent     |
+| Player Paddle    | Bestuurd door de speler       |
+| Goal AI          | Doel van de AI                |
+| Goal Player      | Doel van de speler            |
+| GameManager      | Verwerkt scores en resets     |
 
 ---
 
@@ -154,7 +154,7 @@ Een virtual reality airhockeyspel waarbij een AI-tegenstander leert reageren op 
 ### Meerwaarde van AI
 
 Zonder AI zou de tegenstander bestaan uit een vooraf geprogrammeerd script met voorspelbaar gedrag.
-Door gebruik te maken van Reinforcement Learning kan de agent zelfstandig strategieën ontwikkelen op basis van ervaring.
+Door gebruik te maken van Adversarial Self-Play kan de agent strategieën ontwikkelen op basis van te trainen tegen zichzelf.
 Hierdoor ontstaat een dynamische tegenstander die zich beter aanpast aan het spelverloop.
 
 ### Waarom Virtual Reality?
@@ -165,7 +165,18 @@ Door gebruik te maken van natuurlijke armbewegingen en controllerfeedback ontsta
 ### Interactie
 
 De VR-controller wordt gebruikt als airhockeypusher. De speler kan de puck slaan, verdedigen en doelpunten proberen te maken met natuurlijke bewegingen.
----
+
+## Verschillen
+
+Het grootste verschil tussen onze One-Pager en ons uiteindelijke resultaat is de manier waarop we de agent hebben getraind.
+Waar we oorspronkelijk dachten dat Adversarial Self-Play het meest van toepassing ging zijn, zijn we uiteindelijk toch veranderd naar Reinforcement Learning.
+Dit zodat we de agent geleidelijk aan nieuwe observaties en beloningen konden geven.
+
+Een ander verschil was het aantal observaties en beloningen die nodig gingen zijn.
+Toen we voor de eerste keer aan het concept dachten kwamen we op een paar observaties: eigen positie, positie tegenstander, positie puk en positie goal tegenstander.
+Tegen het einde kwamen snelheid van de puk en de richting van de paddle naar puk daar ook nog bij.  
+Het aantal beloningen is uiteindelijk ook meer geworden.
+Dit zorgt voor een aangenamere gameplay omdat de agent beter weet wat hij doet.
 
 # Resultaten
 
@@ -257,5 +268,4 @@ maar tegen een agent die zijn gedrag heeft aangeleerd door training.
 
 # Bronvermelding
 
-Peeters, T. (2026). mlagents_2223-deel1 [Cursuspresentatie]. Bachelor Toegepaste Informatica, AP Hogeschool
----
+## Peeters, T. (2026). mlagents_2223-deel1 [Cursuspresentatie]. Bachelor Toegepaste Informatica, AP Hogeschool
